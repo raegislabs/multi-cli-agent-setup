@@ -1,0 +1,14 @@
+# Directories agents should skip
+.venv/
+venv/
+node_modules/
+.git/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+.next/
+.nuxt/
+coverage/
