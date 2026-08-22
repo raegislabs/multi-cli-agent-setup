@@ -1,0 +1,37 @@
+# Forbidden patterns for the public-safety gate (grep -E, one per line).
+# "pattern || exclusion" — matching lines that ALSO match the exclusion are ignored.
+# Exclusions exist only for well-known placeholder shapes (dummy JWT prefixes,
+# <YOUR_KEY> templates, git commit SHAs, Codex sandbox flags). If in doubt,
+# let it hit and review manually — the gate is fail-closed on purpose.
+# This file is excluded from its own scan.
+
+# --- Client and partner names (never publish) ---
+[Hh]orwath
+PEPS
+[Pp]ayment[Xx]change
+PARKROYAL|[Pp]arkroyal|[Pp]arkRoyal
+horwathhtl\.com
+# Singapore Hotels Association as a standalone acronym; git commit SHAs excluded
+(^|[^A-Za-z0-9-])SHA([^A-Za-z0-9-]|$) || new SHA|\$\{sha\}|\*\*SHA:\*\*
+
+# --- Infrastructure ---
+# Any dotted quad, excluding loopback / bind-all / RFC1918 / link-local / CGNAT
+[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3} || 0\.0\.0\.0|127\.0\.0\.1|192\.168\.[0-9]|172\.(1[6-9]|2[0-9]|3[01])\.|10\.[0-9]+\.[0-9]+\.|169\.254\.|100\.(6[4-9]|[7-9][0-9]|1[0-2][0-7])\.|version|v[0-9]
+# SSH material (placeholder key paths in templates are fine; real ones never)
+~/\.ssh|/\.ssh/|id_rsa|id_ed25519|authorized_keys|known_hosts || <YOUR_KEY>|<your-key>|<key-path>|<path-to
+# Actual private key filenames and internal hostnames — add each as discovered
+raegislabs_general|digitalocean_raegislabs
+\.ts\.net|tailscale
+
+# --- Secrets and tokens ---
+sk-[A-Za-z0-9_-]{16,} || disk-full|disk-write
+ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}
+AKIA[A-Z0-9]{12,}
+xox[bpars]-
+infisical_[A-Za-z0-9_-]{8,}
+Bearer [A-Za-z0-9._-]{16,} || eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9|<token>|\$\{
+(api[_-]?key|secret|password|token)["']?[[:space:]]*[:=][[:space:]]*["'][^"'{$]{8,}["'] || changeme|CHANGE|<[^>]*>|\$\{|example|dummy|placeholder|YOUR_|your-password|your[-_]?token|ValidPass|WrongPass|eyJ|REPLACE
+
+# --- Identity and internal markers ---
+@raegislabs\.com || john\.pates@raegislabs\.com
+> \*\*Internal\*\*

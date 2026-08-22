@@ -1,0 +1,25 @@
+{
+  "_comment": "Gemini CLI settings (~/.gemini/settings.json)",
+  "_docs": "https://github.com/google-gemini/gemini-cli",
+
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "general": {
+    "previewFeatures": true
+  },
+  "output": {
+    "format": "text"
+  },
+  "tools": {
+    "shell": {
+      "showColor": true
+    },
+    "autoAccept": false
+  },
+  "ui": {
+    "showStatusInTitle": true
+  }
+}

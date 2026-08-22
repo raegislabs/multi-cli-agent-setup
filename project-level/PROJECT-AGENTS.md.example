@@ -1,0 +1,82 @@
+# Project-Level Agent Rules
+
+> Copy this file to the root of your project as `PROJECT-AGENTS.md`, then run
+> `setup-project.sh` to create the symlinks for each CLI.
+
+## Project Overview
+
+- **Name**: <PROJECT_NAME>
+- **Description**: <Brief description of what this project does>
+- **Tech Stack**: <e.g. Python 3.12, FastAPI, PostgreSQL, React, Next.js>
+- **Package Manager**: <e.g. uv, npm, pnpm, bun, cargo>
+
+## Architecture
+
+```
+src/
+  api/          # HTTP endpoints
+  models/       # Database models / domain objects
+  services/     # Business logic
+  utils/        # Shared utilities
+tests/
+  unit/         # Unit tests
+  integration/  # Integration tests
+```
+
+## Development Workflow
+
+### Setup
+```bash
+# Install dependencies
+<INSTALL_COMMAND>
+
+# Run migrations
+<MIGRATION_COMMAND>
+
+# Start dev server
+<DEV_SERVER_COMMAND>
+```
+
+### Testing
+```bash
+# Run all tests
+<TEST_COMMAND>
+
+# Run specific test file
+<TEST_SPECIFIC_COMMAND>
+```
+
+### Linting
+```bash
+<LINT_COMMAND>
+```
+
+## Coding Standards
+
+- **Formatting**: <e.g. black, prettier, rustfmt> — enforced by pre-commit hooks
+- **Naming**: <e.g. snake_case for Python, camelCase for TypeScript>
+- **Imports**: <e.g. absolute imports preferred, sorted by isort/eslint>
+- **Error handling**: <e.g. use Result types, raise domain exceptions, never catch-all>
+- **Database**: <e.g. always use migrations, never raw SQL in application code>
+
+## Key Decisions
+
+Document important architectural decisions here so agents understand *why*
+things are the way they are:
+
+- **Decision 1**: <e.g. "We use SQLAlchemy 2.0 async because...">
+- **Decision 2**: <e.g. "API versioning is done via URL prefix /v1/ because...">
+
+## Environment Variables
+
+| Variable | Purpose | Required |
+|----------|---------|----------|
+| `DATABASE_URL` | PostgreSQL connection string | Yes |
+| `SECRET_KEY` | JWT signing key | Yes |
+| `DEBUG` | Enable debug mode | No (default: false) |
+
+## Deployment
+
+- **Branch**: `main` deploys to production, `develop` to staging
+- **CI/CD**: <e.g. GitHub Actions, webhook-based auto-deploy>
+- **Health check**: `GET /health` returns `{"status": "ok"}`

@@ -1,0 +1,29 @@
+# Codex CLI configuration (~/.codex/config.toml)
+# Docs: https://github.com/openai/codex
+
+# Default model (use the latest available; avoid pinning to prevent errors)
+model = "o4-mini"
+model_reasoning_effort = "medium"
+
+# Personality: "pragmatic" focuses on practical solutions
+personality = "pragmatic"
+
+# Per-project trust levels
+# "trusted" allows file writes without confirmation
+# "default" requires confirmation for writes
+# "sandboxed" restricts to read-only operations
+[projects."/path/to/your/project"]
+trust_level = "trusted"
+
+[projects."/path/to/another/project"]
+trust_level = "default"
+
+# MCP servers (if supported by your Codex version)
+# [mcp_servers.linear]
+# command = "npx"
+# args = ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+# startup_timeout_sec = 20.0
+
+# Feature flags
+[features]
+# tui2 = true  # Experimental TUI v2

@@ -1,0 +1,25 @@
+{
+  "_comment": "Claude Code settings (~/.claude/settings.json or project .claude/settings.json)",
+  "_docs": "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/settings",
+
+  "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run lint:*)",
+      "Read",
+      "Glob",
+      "Grep"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(git push --force:*)"
+    ]
+  },
+
+  "env": {
+    "ANTHROPIC_MODEL": "claude-sonnet-4-5-20250929"
+  }
+}

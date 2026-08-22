@@ -1,0 +1,60 @@
+{
+  "_comment": "Claude Code MCP server configuration (~/.claude/.mcp.json)",
+  "_docs": "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#set-up-model-context-protocol-mcp",
+
+  "sequential-thinking": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+    "env": {}
+  },
+
+  "context7": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@upstash/context7-mcp"],
+    "env": {}
+  },
+
+  "playwright": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@playwright/mcp@latest"],
+    "env": {}
+  },
+
+  "chrome-devtools": {
+    "type": "stdio",
+    "command": "chrome-devtools-mcp",
+    "args": [],
+    "env": {}
+  },
+
+  "postgres-analytics": {
+    "_comment": "Read-only database access for analytics queries",
+    "type": "stdio",
+    "command": "uvx",
+    "args": ["postgres-mcp", "--access-mode=read-only"],
+    "env": {
+      "DATABASE_URI": "postgresql://<DB_USER>:<DB_PASSWORD>@<DB_HOST>:<DB_PORT>/<DB_NAME>"
+    }
+  },
+
+  "tavily-search": {
+    "_comment": "Web search via Tavily API",
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "tavily-mcp@latest"],
+    "env": {
+      "TAVILY_API_KEY": "<YOUR_TAVILY_API_KEY>"
+    }
+  },
+
+  "magic-ui": {
+    "_comment": "21st.dev Magic UI component generation",
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@21st-dev/magic"],
+    "env": {}
+  }
+}
